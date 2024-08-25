@@ -28,11 +28,11 @@ def load_data(year):
     return playerstats
 playerstats = load_data(selected_year)
 
-# Sidebar - Team selection
+
 sorted_unique_team = sorted(playerstats.Tm.unique())
 selected_team = st.sidebar.multiselect('Team', sorted_unique_team, sorted_unique_team)
 
-# Sidebar - Position selection
+
 unique_pos = ['C','PF','SF','PG','SG']
 selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
 
@@ -43,7 +43,7 @@ st.header('Display Player Stats of Selected Team(s)')
 st.write('Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 st.dataframe(df_selected_team)
 
-# Download NBA player stats data
+
 
 def filedownload(df):
     csv = df.to_csv(index=False)
@@ -53,7 +53,7 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
-# Heatmap-portion
+#Heatmap
 if st.button('Intercorrelation Heatmap'):
     st.header('Intercorrelation Matrix Heatmap')
     df_selected_team.to_csv('output.csv',index=False)
